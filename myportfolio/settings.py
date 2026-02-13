@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'madhuportfolio',
+    'myportfolioapp',
 ]
 
 MIDDLEWARE = [
@@ -48,7 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'madhuportfolio.middleware.SessionIdleTimeout',  # Add your custom middleware here
+    'myportfolioapp.middleware.SessionIdleTimeout',  # Add your custom middleware here
 ]
 
 ROOT_URLCONF = 'myportfolio.urls'
@@ -136,3 +136,4 @@ SESSION_COOKIE_AGE = 1800  # 30 minutes
 
 # clear the session when the browser is closed
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+

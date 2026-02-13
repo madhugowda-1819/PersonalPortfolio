@@ -1,0 +1,62 @@
+{% extends "myportfolio/admin/nav.html" %}
+{% load static %}
+
+{% block title %}Home Section{% endblock %}
+
+{% block content %}
+<div class="container-fluid mt-4">
+
+  <h2 class="mb-4">Personal Info</h2>
+
+  <div class="card shadow-sm mb-4">
+    <div class="card-header bg-primary text-white">
+      <h5 class="mb-0">Add / Update Personal Info</h5>
+    </div>
+    <div class="card-body">
+
+      <!-- Form starts -->
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <!-- Name -->
+        <div class="mb-3">
+          <label for="name" class="form-label fw-bold">Full Name</label>
+          <input type="text" class="form-control" id="name" name="name"
+                 value="{{ hero.name|default:'' }}" placeholder="Enter full name" required>
+        </div>
+
+        <!-- Title -->
+        <div class="mb-3">
+          <label for="title" class="form-label fw-bold">Title / Role</label>
+          <input type="text" class="form-control" id="title" name="title"
+                 value="{{ hero.title|default:'' }}" placeholder="Enter your title" required>
+        </div>
+
+        <!-- Intro -->
+        <div class="mb-3">
+          <label for="intro" class="form-label fw-bold">Intro Text</label>
+          <textarea class="form-control" id="intro" name="intro" rows="4" placeholder="Enter intro text" required>{{ hero.intro|default:'' }}</textarea>
+        </div>
+
+        <!-- Image -->
+        <div class="mb-3">
+          <label for="image" class="form-label fw-bold">Profile Image</label>
+          <input type="file" class="form-control" id="image" name="image">
+          {% if hero.image %}
+          <div class="mt-3">
+            <p class="mb-1">Current Image:</p>
+            <img src="{{ hero.image.url }}" alt="Profile Image" class="img-thumbnail" style="width:150px;">
+          </div>
+          {% endif %}
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="btn btn-success">Save Changes</button>
+      </form>
+      <!-- Form ends -->
+
+    </div>
+  </div>
+
+</div>
+{% endblock %}

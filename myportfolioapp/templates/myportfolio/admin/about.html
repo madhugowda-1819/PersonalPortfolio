@@ -1,0 +1,48 @@
+{% extends "myportfolio/admin/nav.html" %}
+{% load static %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+<div class="container-fluid mt-4">
+
+  <h2 class="mb-4">About</h2>
+
+  <div class="card shadow-sm mb-4">
+    <div class="card-header bg-success text-white">
+      <h5 class="mb-0">{% if about %}Update About{% else %}Add About{% endif %}</h5>
+    </div>
+    <div class="card-body">
+
+      <!-- Form starts -->
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <!-- Description -->
+        <div class="mb-3">
+          <label for="description" class="form-label fw-bold">About Description</label>
+          <textarea class="form-control" id="description" name="description" rows="6" placeholder="Enter about description" required>{% if about %}{{ about.description }}{% endif %}</textarea>
+        </div>
+
+        <!-- Resume Upload -->
+        <div class="mb-3">
+          <label for="resume" class="form-label fw-bold">Resume (PDF)</label>
+          <input type="file" class="form-control" id="resume" name="resume" accept=".pdf">
+          {% if about and about.resume %}
+          <div class="mt-3">
+            <p class="mb-1">Current Resume:</p>
+            <a href="{{ about.resume.url }}" target="_blank" class="btn btn-outline-secondary btn-sm">View Resume</a>
+          </div>
+          {% endif %}
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="btn btn-success">{% if about %}Update{% else %}Add{% endif %}</button>
+      </form>
+      <!-- Form ends -->
+
+    </div>
+  </div>
+
+</div>
+{% endblock %}

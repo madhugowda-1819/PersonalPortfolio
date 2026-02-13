@@ -1,0 +1,74 @@
+{% extends "myportfolio/admin/nav.html" %}
+{% block title %}Framework / API{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+
+  <h2 class="mb-4">Framework / API</h2>
+
+  <!-- ADD / EDIT FORM -->
+  <div class="card shadow-sm mb-4">
+    <div class="card-header bg-warning fw-bold">
+      {% if frameworkapi %}Update{% else %}Add{% endif %} Framework / API
+    </div>
+    <div class="card-body">
+      <form method="POST">
+        {% csrf_token %}
+
+        <div class="mb-3">
+          <label class="form-label fw-bold"> Framework / API Name:</label>
+          <input type="text"
+                 name="name"
+                 class="form-control"
+                 placeholder="Enter name"
+                 value="{% if frameworkapi %}{{ frameworkapi.name }}{% endif %}"
+                 required>
+        </div>
+
+        <button class="btn btn-warning">
+          {% if frameworkapi %}Update{% else %}Add{% endif %}
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- LIST -->
+  <div class="card shadow-sm">
+    <div class="card-header bg-dark text-white fw-bold">
+      All Framework / API
+    </div>
+    <div class="card-body table-responsive">
+      <table class="table table-bordered table-hover">
+        <thead class="table-light">
+          <tr>
+            <th>#</th>
+            <th>Framework / API Name</th>
+            <th width="180">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for obj in frameworkapis %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ obj.name }}</td>
+            <td>
+              <a href="{% url 'edit_frameworkapi' obj.id %}" class="btn btn-sm btn-primary">Edit</a>
+              <a href="{% url 'delete_frameworkapi' obj.id %}"
+                 class="btn btn-sm btn-danger"
+                 onclick="return confirm('Delete this item?');">
+                Delete
+              </a>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="3" class="text-center">No data found</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "myportfolio/admin/nav.html" %}
+{% load static %}
+
+{% block title %}Contact {% endblock %}
+
+{% block content %}
+<div class="container-fluid mt-4">
+
+  <h2 class="mb-4">Contact </h2>
+
+  <div class="card shadow-sm mb-5">
+    <div class="card-header bg-info text-white">
+      <h5 class="mb-0">{% if contact %}Update Contact{% else %}Add Contact{% endif %}</h5>
+    </div>
+    <div class="card-body">
+      <form method="POST">
+        {% csrf_token %}
+
+        <!-- Email -->
+        <div class="mb-3">
+          <label for="email" class="form-label fw-bold">Email</label>
+          <input type="email" class="form-control" id="email" name="email"
+                 placeholder="Enter email" value="{% if contact %}{{ contact.email }}{% endif %}" required>
+        </div>
+
+        <!-- Phone -->
+        <div class="mb-3">
+          <label for="phone" class="form-label fw-bold">Phone</label>
+          <input type="text" class="form-control" id="phone" name="phone"
+                 placeholder="Enter phone number" value="{% if contact %}{{ contact.phone }}{% endif %}" required>
+        </div>
+
+        <!-- Location -->
+        <div class="mb-3">
+          <label for="location" class="form-label fw-bold">Location</label>
+          <input type="text" class="form-control" id="location" name="location"
+                 placeholder="Enter location" value="{% if contact %}{{ contact.location }}{% endif %}" required>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="btn btn-info">{% if contact %}Update{% else %}Add{% endif %}</button>
+      </form>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
