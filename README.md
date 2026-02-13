@@ -59,5 +59,3 @@ Developed by MADHU K S
 ---
 
 If you want, I can also **write an even shorter, GitHub-friendly version** that’s **punchy, 5–6 lines**, perfect for quick portfolio display.  
-
-Do you want me to do that?
